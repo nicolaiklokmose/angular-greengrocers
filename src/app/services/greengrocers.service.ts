@@ -10,7 +10,7 @@ import { Item } from '../models/item';
 export class GreenGrocersService {
     http = inject(HttpClient);
     
-    total = 0;
+    total$ = 0;
     cartItems: Item[] = [];
 
     getItems(): Observable<Item[]> {
@@ -21,11 +21,12 @@ export class GreenGrocersService {
         return this.cartItems;
     }
 
-    getTotal(): number {
-        return this.total;
-      }
-
     setTotal(total: number): void {
-        this.total = total;
+        this.total$ = total;
+    }
+
+    addToCart(item: Item) {
+        this.cartItems.push(item);
+        console.log("Item added to cart:", item);
     }
 }

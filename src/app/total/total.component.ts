@@ -12,7 +12,7 @@ export class TotalComponent implements OnInit {
   constructor(private readonly greenGrocersService: GreenGrocersService) {}
 
   ngOnInit() {
-    this.total = this.greenGrocersService.getTotal();
+    this.total = this.greenGrocersService.total$;
     console.log("Inside total component: ", this.total)
   }
 }

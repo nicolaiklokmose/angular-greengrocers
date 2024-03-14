@@ -19,7 +19,7 @@ export class CartComponent implements OnInit {
       const total = this.getTotal(items);
       console.log("inside cart component", total);
       this.greenGrocersService.setTotal(total);
-      console.log("this total is from the service: ", this.greenGrocersService.getTotal())
+      console.log("this total is from the service: ", this.greenGrocersService.total$)
     });
   }
 

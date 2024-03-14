@@ -21,4 +21,8 @@ export class StoreComponent implements OnInit {
       });
     });
   }
+
+  addToCart(item: Item): void {
+    this.greenGrocersService.addToCart(item);
+  }
 }

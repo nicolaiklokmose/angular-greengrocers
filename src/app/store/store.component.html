@@ -1,5 +1,5 @@
 <ul class="item-list store--item-list">
     <ng-container *ngFor="let item of items$ | async">
-      <app-item [itemName]="item.name" [itemId]="item.id"[item]="item"></app-item>
+      <app-item [itemName]="item.name" [itemId]="item.id"[item]="item" (addToCart)="addToCart(item)"></app-item>
     </ng-container>
   </ul>
