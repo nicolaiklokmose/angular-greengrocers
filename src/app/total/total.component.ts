@@ -1,3 +1,4 @@
+import { makeBindingParser } from '@angular/compiler';
 import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { GreenGrocersService } from '../services/greengrocers.service';
@@ -20,3 +21,4 @@ export class TotalComponent implements OnInit {
     });
   }
 }
+

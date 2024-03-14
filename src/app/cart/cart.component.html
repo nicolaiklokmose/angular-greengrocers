@@ -9,9 +9,9 @@
             alt="beetroot"
           />
           <p>{{item.name}}</p>
-          <button class="quantity-btn remove-btn center">-</button>
-          <span class="quantity-text center">1</span>
-          <button class="quantity-btn add-btn center">+</button>
+          <button class="quantity-btn remove-btn center" (click)="removeItem(item)">-</button>
+          <span class="quantity-text center">{{ item.quantity }}</span>
+          <button class="quantity-btn add-btn center" (click)="addToCart(item)">+</button>
         </li>
       </ng-container>
     </ul>

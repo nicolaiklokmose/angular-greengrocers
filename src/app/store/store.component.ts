@@ -23,6 +23,7 @@ export class StoreComponent implements OnInit {
   }
 
   addToCart(item: Item): void {
+    item.quantity = 1;
     this.greenGrocersService.addToCart(item);
   }
 }

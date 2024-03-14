@@ -22,7 +22,7 @@ export class GreenGrocersService {
     }
 
     private calculateTotal(cartItems: Item[]): number {
-        return cartItems.reduce((total, item) => total + item.price, 0);
+        return cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
     }
 
     setTotal(total: number): void {
@@ -37,9 +37,29 @@ export class GreenGrocersService {
 
     addToCart(item: Item) {
         const currentItems = this.cartItems$.value;
-        currentItems.push(item);
-        this.cartItems$.next(currentItems);
+        const existingItem = currentItems.find(i => i.id === item.id);
+        if (existingItem) {
+            existingItem.quantity++;
+            this.cartItems$.next([...currentItems]);
+        } else {
+            this.cartItems$.next([...currentItems, { ...item, quantity: 1 }]);
+        }
+        this.updateTotal(); 
+    }
+
+    removeItemFromCart(item: Item) {
+        const currentItems = this.cartItems$.value;
+        const updatedItems = currentItems.map(cartItem => {
+            if (cartItem.id === item.id) {
+                if (cartItem.quantity > 1) {
+                    cartItem.quantity--;
+                } else {
+                    return null;
+                }
+            }
+            return cartItem;
+        }).filter(Boolean) as Item[];
+        this.cartItems$.next(updatedItems);
         this.updateTotal();
-        console.log("Item added to cart:", item);
     }
 }

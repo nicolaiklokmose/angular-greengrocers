@@ -16,4 +16,12 @@ export class CartComponent implements OnInit {
   ngOnInit() {
     this.cartItems$ = this.greenGrocersService.getCartItems();
   }
+
+  addToCart(item: Item): void {
+    this.greenGrocersService.addToCart(item);
+  }
+
+  removeItem(item: Item): void {
+    this.greenGrocersService.removeItemFromCart(item);
+  }
 }
