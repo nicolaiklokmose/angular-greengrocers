@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { GreenGrocersService } from '../services/greengrocers.service';
 
 @Component({
@@ -7,12 +8,15 @@ import { GreenGrocersService } from '../services/greengrocers.service';
   styleUrls: ['./total.component.css']
 })
 export class TotalComponent implements OnInit {
-  total: Number = 0;
+  @Input() total: number = 0;
+  private totalSubscription: Subscription | undefined;
 
   constructor(private readonly greenGrocersService: GreenGrocersService) {}
 
   ngOnInit() {
-    this.total = this.greenGrocersService.total$;
-    console.log("Inside total component: ", this.total)
+    this.totalSubscription = this.greenGrocersService.total$.subscribe(total => {
+      this.total = total;
+      console.log("Inside total component: ", this.total);
+    });
   }
 }

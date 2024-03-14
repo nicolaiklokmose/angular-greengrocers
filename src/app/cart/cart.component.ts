@@ -15,19 +15,5 @@ export class CartComponent implements OnInit {
 
   ngOnInit() {
     this.cartItems$ = this.greenGrocersService.getCartItems();
-    this.cartItems$.subscribe((items) => {
-      const total = this.getTotal(items);
-      console.log("inside cart component", total);
-      this.greenGrocersService.setTotal(total);
-      console.log("this total is from the service: ", this.greenGrocersService.total$)
-    });
-  }
-
-  getTotal(items: Item[]): number {
-    let total = 0;
-    items.forEach(item => {
-      total += item.price;
-    });
-    return total;
   }
 }

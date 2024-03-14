@@ -10,7 +10,7 @@ import { Item } from '../models/item';
 export class GreenGrocersService {
     http = inject(HttpClient);
     
-    total$ = 0;
+    total$ = new BehaviorSubject<number>(0);
     cartItems$: BehaviorSubject<Item[]> = new BehaviorSubject<Item[]>([]);
 
     getItems(): Observable<Item[]> {
@@ -21,14 +21,25 @@ export class GreenGrocersService {
         return this.cartItems$.asObservable();
     }
 
+    private calculateTotal(cartItems: Item[]): number {
+        return cartItems.reduce((total, item) => total + item.price, 0);
+    }
+
     setTotal(total: number): void {
-        this.total$ = total;
+        this.total$.next(total);
+    }
+
+    updateTotal(): void {
+        const currentItems = this.cartItems$.value;
+        const total = this.calculateTotal(currentItems);
+        this.setTotal(total);
     }
 
     addToCart(item: Item) {
         const currentItems = this.cartItems$.value;
         currentItems.push(item);
         this.cartItems$.next(currentItems);
+        this.updateTotal();
         console.log("Item added to cart:", item);
     }
 }
