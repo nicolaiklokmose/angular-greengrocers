@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { GreenGrocersService } from '../services/greengrocers.service';
 import { Item } from '../models/item';
-import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-store',

@@ -9,10 +9,23 @@ import { Item } from '../models/item';
 
 export class GreenGrocersService {
     http = inject(HttpClient);
+    
+    total = 0;
+    cartItems: Item[] = [];
 
     getItems(): Observable<Item[]> {
-        return this.http.get<Item[]>("https://boolean-api-server.fly.dev/groceries")
+        return this.http.get<Item[]>("https://boolean-api-server.fly.dev/groceries");
     }
 
-    todos = this.getItems();
+    getCartItems(): Item[] {
+        return this.cartItems;
+    }
+
+    getTotal(): number {
+        return this.total;
+      }
+
+    setTotal(total: number): void {
+        this.total = total;
+    }
 }
