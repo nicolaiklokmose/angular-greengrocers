@@ -14,7 +14,7 @@ export class CartComponent implements OnInit {
   constructor(private readonly greenGrocersService: GreenGrocersService) {}
 
   ngOnInit() {
-    this.cartItems$ = this.greenGrocersService.getItems();
+    this.cartItems$ = this.greenGrocersService.getCartItems();
     this.cartItems$.subscribe((items) => {
       const total = this.getTotal(items);
       console.log("inside cart component", total);
