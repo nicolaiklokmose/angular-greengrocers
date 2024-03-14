@@ -1,4 +1,8 @@
 <ul class="item-list store--item-list">
+  <button class="filter-button" (click)="filterByType('fruit')">Filter by Fruit</button>
+  <button class="filter-button" (click)="filterByType('vegetable')">Filter by Vegetable</button>
+  <button class="sort-button" (click)="sortByPrice()">Sort by Price Ascending</button>
+  <button class="sort-button" (click)="sortByName()">Sort by Name Ascending</button>
     <ng-container *ngFor="let item of items$ | async">
       <app-item [itemName]="item.name" [itemId]="item.id"[item]="item" (addToCart)="addToCart(item)"></app-item>
     </ng-container>

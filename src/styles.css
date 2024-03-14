@@ -187,3 +187,22 @@ app-total {
     border-bottom: 2px solid #00675b;
   }
 }
+
+/* EXTENSION */
+
+.filter-button,
+.sort-button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 20px; 
+  background-color: #d80077; 
+  color: white; 
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.filter-button:hover,
+.sort-button:hover {
+  background-color: #00bfd8;
+  border-radius: 15px;
+}
