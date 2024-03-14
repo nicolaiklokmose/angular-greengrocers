@@ -1,0 +1,18 @@
+import { HttpClient } from '@angular/common/http';
+import { inject, Injectable } from "@angular/core";
+import { Observable } from 'rxjs';
+import { Item } from '../models/item';
+
+@Injectable({
+    providedIn: 'root'
+})
+
+export class GreenGrocersService {
+    http = inject(HttpClient);
+
+    getItems(): Observable<Item[]> {
+        return this.http.get<Item[]>("https://boolean-api-server.fly.dev/groceries")
+    }
+
+    todos = this.getItems();
+}
